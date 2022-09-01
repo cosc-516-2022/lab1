@@ -19,20 +19,25 @@ For Connectivity, make sure to have public access as `Yes`. Select `Create new V
 
 Leave database authentication as `Password authentication`. Click `Create database` to create the database.  It may take a few minutes to create the database.
 
+## Configuring VPC and Network Access
+
+Even when making the database public, you must also configure the database VPC to allow inbound traffic from your machine.
+
+Click on VPC security group. Then select inbound rules. Edit the inbound rule to allow all traffic from your IP address. Only your machine will have access to the database. You can add other rules as required.
 
 ## Connecting to the Database
 
+Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. This will show connecting using open source software SQuirreL that is used in other database courses. For more info, go here...
+
+[Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html)
 
 
 ## Tasks
 
-Starter code is available including JUnit test cases and the JDBC drivers for MySQL and PostgreSQL. 
-
-You will repeat the same tasks for both PostgreSQL and MySQL.  The goal is to build experience with both systems and see their similarities and differences.  Expect to consult the online documentation for MySQL and PostgreSQL to help with this assignment. **Hint: Complete one of the databases first then copy the code to the other.  There are only a few changes between the two.**
-
-The two classes you will write are `QueryMySQL.java` and `QueryPostgreSQL.java`.  The test classes are `TestQueryMySQL.java` and `TestQueryPostgreSQL.java` respectively.  You will fill in the methods requested (search for **TODO**).  Marks for each method are below.  You receive the marks if you pass the JUnit tests AND have followed the requirements asked in the question (including documentation and proper formatting).
+To test your database, write Java code using VS Code. The file to edit is `MySQLonAWS.java`.  The test file is `TestMySQLonAWS.java`.  Fill in the methods requested (search for **TODO**).  Marks for each method are below.  You receive the marks if you pass the JUnit tests AND have followed the requirements asked in the question (including documentation and proper formatting).
 
 - +1 mark - Method `connect()` to make a connection to the database.
+- +1 mark - Method `connectSSL()` to make a secure connection to the database. Requires updating database configuration on RDS.
 - +1 mark - Method `close()` to close the connection to the database.
 - +1 mark - Method `drop()` to drop the table "person" that we will be using.
 - +2 marks - Method `create()` to create a "person" table with fields:
@@ -57,7 +62,12 @@ name, salary, birthdate, last_update
 - +2 marks - Write the method `query2()` that returns the person's last name and salary if the person's salary is greater than the average salary of all people.</li>
 - +2 marks - Write the method `query3()` that returns all fields of a pair of people where a pair of people is returned if the last_update field of their records have been updated less than an hour apart. Do not duplicate pairs.  Example: Only show (Ann, Bob) and not also (Bob, Ann).</li>
 
-**Total Marks: 30** (15 marks for each database)
+**Total Marks: 20**
+
+## Bonus Marks:
+
+- +3 bonus marks for configuring multi-AZ fail-over and testing query when have failure (requires not using free-tier)
+- 
 
 ## Submission
 
