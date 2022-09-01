@@ -1,32 +1,28 @@
-# COSC 404 - Database System Implementation<br/>Lab 1 - MySQL vs. PostgreSQL - Creating and Querying Data
-
-This lab practices creating and querying data on MySQL and PostgreSQL and allows comparing the two database systems.
+# COSC 516 - Cloud Databases<br/>Lab 1 - MySQL on Amazon RDS
 
 ## Setup
 
-The labs use Java, Docker, and GitHub. Follow the [setup and installation instructions](https://github.com/rlawrenc/cosc_404/tree/main/labs/setup) to get your computer setup for the labs.
+Create a Amazon AWS free tier account at: [https://aws.amazon.com/free](https://aws.amazon.com/free).
 
-## MySQL
+The free tier account allows for free trials forever and 12-months free offers from your sign up period. You will need an email address to use. The sign-up also asks for a credit card. If you do not have a credit card, then a pre-paid credit card with a small amount should work.
 
-One of the Docker containers is running MySQL 8. Connection information is in the `docker-compose.yml` file.
+## AWS Console
 
-### References:
+Login to AWS. In the AWS console, select `Databases` then `RDS`.
 
-- [MySQL Date Time Functions](http://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html)
-- [MySQL String Functions](http://dev.mysql.com/doc/refman/8.0/en/string-functions.html)
-- [MySQL Auto_Increment](http://dev.mysql.com/doc/refman/8.0/en/example-auto-increment.html)
-- [MySQL Date and Time Types](http://dev.mysql.com/doc/refman/8.0/en/datetime.html)
+## Amazon RDS
+
+Click on `Create database`. Select `MySQL` as the engine and `Free tier`. For database identifier use `mysql516`. Select a master password for your database. The instance configuration is `db.t3.micro`. Leave storage as `General Purpose SSD`.
+
+For Connectivity, make sure to have public access as `Yes`. Select `Create new VPC` and `DB Subnet Group`. 
 
 
-## PostgreSQL
+Leave database authentication as `Password authentication`. Click `Create database` to create the database.  It may take a few minutes to create the database.
 
-One of the Docker containers is running Postgres 14. Connection information is in the `docker-compose.yml` file.
 
-### References:
+## Connecting to the Database
 
-- [PostgreSQL Date Functions](http://www.postgresql.org/docs/14/static/functions-datetime.html)
-- [PostgreSQL String Functions](http://www.postgresql.org/docs/14/static/functions-string.html)
-- [PostgreSQL Create Table Syntax](http://www.postgresql.org/docs/14/static/sql-createtable.html)
+
 
 ## Tasks
 
