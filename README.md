@@ -71,7 +71,7 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 - +1 mark - Method `connect()` to make a connection to the database.
 - +1 mark - Method `connectSSL()` to make a secure connection to the database. Requires updating database configuration on RDS.
 - +1 mark - Method `close()` to close the connection to the database.
-- +1 mark - Method `drop()` to drop the tables `company` and `stockprice` that we will be using. Note: The database name will be `lab`. Note: May need to perform `USE lab1` command before drop. [MySQL USE Command](https://dev.mysql.com/doc/refman/8.0/en/use.html)
+- +1 mark - Method `drop()` to drop the tables `company` and `stockprice` that we will be using. Note: The database name will be `lab1`. Note: May need to perform `USE lab1` command before drop. [MySQL USE Command](https://dev.mysql.com/doc/refman/8.0/en/use.html)
 - +4 marks - Method `create()` to create the database `lab1`. [MySQL CREATE DATABASE command](https://dev.mysql.com/doc/refman/8.0/en/create-database.html). Create the following tables:
 ```
 	Table name: company
@@ -96,8 +96,8 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 ```
 - +4 marks - Method `insert()` to add records. The records are given above the `insert()` method in the code file. **You must use PreparedStatements to get full marks.**	
 
-- +1 mark - Write the method `delete()` to delete all stock price records where the date is before `2022-08-20` or the company is `GameStop`.
-- +2 marks - Write the method `query1()` that returns company info (name, revenue, employees) that have more than 10000 employees or annual revenue less that 1 million dollars. Order by company name ascending.
+- +1 mark - Write the method `delete()` to delete all stock price records where the date is before `'2022-08-20'` or the company is `'GameStop'`.
+- +2 marks - Write the method `query1()` that returns company info (name, revenue, employees) that have more than `10000` employees or annual revenue less that 1 million dollars. Order by company `name` ascending.
 - +2 marks - Write the method `query2()` that returns the company name and ticker and calculates the lowest price, highest price, average closing price, and average volume in the week of August 22nd to 26th inclusive.
 - +3 marks - Write the method `query3()` that returns a list of all companies that displays their name, ticker, and closing stock price on August 30, 2022 (if exists). Only show companies where their closing stock price on August 30, 2022 is no more than 10% below the closing average for the week of August 15th to 19th inclusive. That is, if closing price is currently 100, the average closing price must be <= 110. Companies without a stock ticker should always be shown in the list. Order by company name ascending.
 
