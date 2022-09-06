@@ -34,9 +34,16 @@ Leave database authentication as `Password authentication`. Click `Create databa
 
 ## Configuring VPC and Network Access
 
-Even when making the database public, you must also configure the database VPC to allow inbound traffic from your machine. A [virtual private cloud (VPC)](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) is a virtual network that is similar to a physical network. An administrator defines subnets, IP addresses, routing, and firewall information for their VPC. A database instance is created in a particular VPC, and the VPC must be configured to allow network access to it.
+In addition to making the database public, you must also configure the database VPC to allow inbound traffic from your machine. A [virtual private cloud (VPC)](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) is a virtual network that is similar to a physical network. An administrator defines subnets, IP addresses, routing, and firewall information for their VPC. A database instance is created in a particular VPC, and the VPC must be configured to allow network access to it.
 
-Once the databsae is created, click on the database identifier to get to an overview screen. Click on VPC security group. Then select inbound rules. Edit the inbound rule to allow all traffic from your IP address. Only your machine will have access to the database. You can add other rules as required.
+Once the databsae is created, click on the database identifier to get to an overview screen. Click on the VPC security group (in the figure it is `default (sg-00bb5776c03caa8c6)`). Then select `Inbound rules`. 
+
+<img src="img/4_security_group.png" alt="Configure VPC security group" width="600">
+<img src="img/4b_security_group_config.png" alt="Configure VPC security group with Inbound IP Rule" width="600">
+
+Click on `Edit the inbound rules`. In the next screen, `Add rule` that allows all traffic from your IP address. Only your machine will have access to the database. You can add other rules as required.
+
+<img src="img/4c_vpc_add_inbound_ip.png" alt="VCP Add Inbound IP" width="600">
 
 ## Connecting to the Database
 
