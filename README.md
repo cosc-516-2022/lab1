@@ -71,13 +71,29 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 - +1 mark - Method `connect()` to make a connection to the database.
 - +1 mark - Method `connectSSL()` to make a secure connection to the database. Requires updating database configuration on RDS.
 - +1 mark - Method `close()` to close the connection to the database.
-- +1 mark - Method `drop()` to drop the table "person" that we will be using.
-- +2 marks - Method `create()` to create a "person" table with fields:
-  	- id - integer, must auto-increment
-	- name - variable character field up to size 40
-	- salary - must hold up to 99,999,999.99 exactly
-	- birthdate - date
-	- last_update - timestamp	
+- +1 mark - Method `drop()` to drop the tables `company` and `stockprice` that we will be using. Note: The database name will be `lab`. Note: May need to perform `USE lab1` command before drop. [MySQL USE Command](https://dev.mysql.com/doc/refman/8.0/en/use.html)
+- +4 marks - Method `create()` to create the database `lab1`. [MySQL CREATE DATABASE command](https://dev.mysql.com/doc/refman/8.0/en/create-database.html). Create the following tables:
+```
+	Table name: company
+	Fields:
+	  - id - integer, must be primary key
+	  - name - variable character field up to size 50
+	  - ticker - character field always of size 10
+	  - annualRevenue - must hold up to 999,999,999,999.99 exactly
+	  - numEmployees - integer	 
+	 
+	Table name: stockprice
+	Fields:
+	  - companyId - integer
+	  - priceDate - date of stock price
+	  - openPrice - opening price must hold up to 99999999.99
+	  - highPrice - high price must hold up to 99999999.99
+	  - lowPrice - low price must hold up to 99999999.99
+	  - closePrice - closing price must hold up to 99999999.99
+	  - volume - number of shares traded, integer
+	  - primary key must be `companyId` and `priceDate`
+	  - add an appropriate foreign key
+```
 - +3 marks - Method `insert()` to add the following records.  **You must use PreparedStatements to get full marks.**	
 
 ```
