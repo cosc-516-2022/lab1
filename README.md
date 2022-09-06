@@ -47,7 +47,7 @@ Click on `Edit the inbound rules`. In the next screen, `Add rule` that allows al
 
 ## Connecting to the Database
 
-Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. This will show connecting using open source software SQuirreL that is used in other database courses. For more info, see [Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html).
+Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. For more info, see [Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html).
 
 ### Accessing MySQL using SQuirreL SQL
 [SQuirreL](https://squirrel-sql.sourceforge.io/) is an open source graphical query tool capable of querying any JDBC-accessible database including Oracle, MySQL, and SQL Server.
@@ -66,7 +66,7 @@ Database: (leave blank)
 
 ## Tasks
 
-To test your database, write Java code using VS Code. The file to edit is `MySQLonAWS.java`.  The test file is `TestMySQLonAWS.java`.  Fill in the methods requested (search for **TODO**).  Marks for each method are below.  You receive the marks if you pass the JUnit tests AND have followed the requirements asked in the question (including documentation and proper formatting).
+To test your database, write Java code using [Visual Studio Code](https://code.visualstudio.com/). The file to edit is `MySQLonAWS.java`.  The test file is `TestMySQLonAWS.java`.  Fill in the methods requested (search for **TODO**).  Marks for each method are below.  You receive the marks if you pass the JUnit tests AND have followed the requirements asked in the question (including documentation and proper formatting).
 
 - +1 mark - Method `connect()` to make a connection to the database.
 - +1 mark - Method `connectSSL()` to make a secure connection to the database. Requires updating database configuration on RDS.
