@@ -8,22 +8,35 @@ The free tier account allows for free trials forever and 12-months free offers f
 
 ## AWS Console
 
-Login to AWS. In the AWS console, select `Databases` then `RDS`.
+Login to AWS. In the AWS console, select `Database` then `RDS`.
+
+![AWS Console](img/2_aws_console_rds.png)
+![AWS RDS Dashboard](img/2b_aws_rds_dashboard.png)
 
 ## Amazon RDS
 
-Click on `Create database`. Select `MySQL` as the engine and `Free tier`. For database identifier use `mysql516`. Select a master password for your database. The instance configuration is `db.t3.micro`. Leave storage as `General Purpose SSD`.
+Click on `Create database`. Select `MySQL` as the engine and `Free tier`. 
+
+<img src="img/3_create_mysql1.png" alt="Create MySQL Database" width="600">
+
+For database identifier use `mysql516`. Select a master password for your database. The instance configuration is `db.t3.micro`. Leave storage as `General Purpose SSD`.
+
+<img src="img/3_create_mysql2.png" alt="Instance Configuration for MySQL Database" width="600">
+<img src="img/3_create_mysql3.png" alt="Storage Configuration for MySQL Database" width="600">
 
 For Connectivity, make sure to have public access as `Yes`. Select `Create new VPC` and `DB Subnet Group`. 
 
+<img src="img/3_create_mysql4.png" alt="Connectivity Configuration for MySQL Database" width="600">
 
 Leave database authentication as `Password authentication`. Click `Create database` to create the database.  It may take a few minutes to create the database.
 
+<img src="img/3_create_mysql5.png" alt="Authentication Configuration for MySQL Database" width="600">
+
 ## Configuring VPC and Network Access
 
-Even when making the database public, you must also configure the database VPC to allow inbound traffic from your machine.
+Even when making the database public, you must also configure the database VPC to allow inbound traffic from your machine. A [virtual private cloud (VPC)](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) is a virtual network that is similar to a physical network. An administrator defines subnets, IP addresses, routing, and firewall information for their VPC. A database instance is created in a particular VPC, and the VPC must be configured to allow network access to it.
 
-Click on VPC security group. Then select inbound rules. Edit the inbound rule to allow all traffic from your IP address. Only your machine will have access to the database. You can add other rules as required.
+Once the databsae is created, click on the database identifier to get to an overview screen. Click on VPC security group. Then select inbound rules. Edit the inbound rule to allow all traffic from your IP address. Only your machine will have access to the database. You can add other rules as required.
 
 ## Connecting to the Database
 
