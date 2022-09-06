@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 
-public class TestQueryMySQL 
+public class TestMySQLonAWS 
 {
 	/**
 	 * Class being tested
 	 */
-	private static QueryMySQL q;
+	private static MySQLonAWS q;
 	
 	/**
 	 * Connection to the database
@@ -32,7 +32,7 @@ public class TestQueryMySQL
 	@BeforeAll
 	public static void init() throws Exception 
 	{		
-		q = new QueryMySQL();
+		q = new MySQLonAWS();
 		con = q.connect();					
 	}
 	
@@ -61,8 +61,10 @@ public class TestQueryMySQL
     	try
     	{
 	    	Statement stmt = con.createStatement();
-	    	stmt.executeQuery("SELECT * FROM person");
-	    	fail("Table person exists and should be dropped!");
+	    	stmt.executeQuery("SELECT * FROM company");
+	    	fail("Table company exists and should be dropped!");
+			stmt.executeQuery("SELECT * FROM stockprice");
+	    	fail("Table stockprice exists and should be dropped!");
     	}
     	catch (SQLException e)
     	{
@@ -83,13 +85,21 @@ public class TestQueryMySQL
     	try
     	{
 	    	Statement stmt = con.createStatement();
-	    	ResultSet rst = stmt.executeQuery("SELECT * FROM person");	    	
+	    	ResultSet rst = stmt.executeQuery("SELECT * FROM company");	    	
 	    	
 	    	// Verify its metadata
 	    	ResultSetMetaData rsmd = rst.getMetaData();
-	    	String st = QueryMySQL.resultSetMetaDataToString(rsmd);
+	    	String st = MySQLonAWS.resultSetMetaDataToString(rsmd);
 	    	System.out.println(st);	    			
-	    	assertEquals("id (id, 4-INT, 10, 10, 0), name (name, 12-VARCHAR, 40, 40, 0), salary (salary, 3-DECIMAL, 10, 10, 2), birthdate (birthdate, 91-DATE, 10, 10, 0), last_update (last_update, 93-TIMESTAMP, 19, 19, 0)", st);	    	
+	    	assertEquals("id (id, 4-INT, 10, 10, 0), name (name, 12-VARCHAR, 40, 40, 0), salary (salary, 3-DECIMAL, 10, 10, 2), birthdate (birthdate, 91-DATE, 10, 10, 0), last_update (last_update, 93-TIMESTAMP, 19, 19, 0)", st);	 
+			
+			
+			rst = stmt.executeQuery("SELECT * FROM stockprice");	    		    	
+	    	// Verify its metadata
+	    	rsmd = rst.getMetaData();
+	    	st = MySQLonAWS.resultSetMetaDataToString(rsmd);
+	    	System.out.println(st);	    			
+	    	assertEquals("id (id, 4-INT, 10, 10, 0), name (name, 12-VARCHAR, 40, 40, 0), salary (salary, 3-DECIMAL, 10, 10, 2), birthdate (birthdate, 91-DATE, 10, 10, 0), last_update (last_update, 93-TIMESTAMP, 19, 19, 0)", st);
     	}
     	catch (SQLException e)
     	{
@@ -163,7 +173,7 @@ public class TestQueryMySQL
 				+"\nAnn Alden, 123000.00"
 				+"\nDon Denton, 91234.24"
 				+"\nTotal results: 4";
-    	String queryResult = QueryMySQL.resultSetToString(rst, 100);
+    	String queryResult = MySQLonAWS.resultSetToString(rst, 100);
     	System.out.println(queryResult);
     	assertEquals(answer, queryResult);    	    
     }
@@ -187,7 +197,7 @@ public class TestQueryMySQL
 				+"\nCat, 99999999.99"
 				+"\nEdwards, 55125125.25"			
 				+"\nTotal results: 2";
-    	String queryResult = QueryMySQL.resultSetToString(rst, 100);
+    	String queryResult = MySQLonAWS.resultSetToString(rst, 100);
     	System.out.println(queryResult);
     	assertEquals(answer, queryResult);   
     }
@@ -211,7 +221,7 @@ public class TestQueryMySQL
 				+"\n1, Ann Alden, 123000.00, 1986-03-04, 2022-01-04 11:30:30.0, 3, Chloe Cat, 99999999.99, 1999-01-15, 2022-01-04 12:25:45.0"
 				+"\n3, Chloe Cat, 99999999.99, 1999-01-15, 2022-01-04 12:25:45.0, 4, Don Denton, 91234.24, 2004-08-03, 2022-01-04 12:45:00.0"
 				+"\nTotal results: 2";
-    	String queryResult = QueryMySQL.resultSetToString(rst, 100);
+    	String queryResult = MySQLonAWS.resultSetToString(rst, 100);
     	System.out.println(queryResult);
     	assertEquals(answer, queryResult);   
     }    
@@ -231,7 +241,7 @@ public class TestQueryMySQL
         	Statement stmt = con.createStatement();
  	    	ResultSet rst = stmt.executeQuery(sql);	    	
  	    	
- 	    	String st = QueryMySQL.resultSetToString(rst, 1000);
+ 	    	String st = MySQLonAWS.resultSetToString(rst, 1000);
  	    	System.out.println(st);	    			
  	    		
  	    	assertEquals(answer, st);	           	             
