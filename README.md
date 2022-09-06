@@ -94,30 +94,22 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 	  - primary key must be `companyId` and `priceDate`
 	  - add an appropriate foreign key
 ```
-- +3 marks - Method `insert()` to add the following records.  **You must use PreparedStatements to get full marks.**	
+- +4 marks - Method `insert()` to add records. The records are given above the `insert()` method in the code file. **You must use PreparedStatements to get full marks.**	
 
-```
-name, salary, birthdate, last_update
-1, Ann Alden, 123000.00, 1986-03-04, 2022-01-04 11:30:30.0
-2, Bob Baron, 225423.00, 1993-12-02, 2022-01-04 12:30:25.0
-3, Chloe Cat, 99999999.99, 1999-01-15, 2022-01-04 12:25:45.0
-4, Don Denton, 91234.24, 2004-08-03, 2022-01-04 12:45:00.0
-5, Eddy Edwards, 55125125.25, 2003-05-17, 2022-01-05 23:00:00.0
-```
-
-- +1 mark - Write the method `delete()` to delete the person with name `'Bob Baron'`.</li>
-- +2 marks - Write the method `query1()` that returns the person name and salary where rows are sorted by salary descending.</li>
-- +2 marks - Write the method `query2()` that returns the person's last name and salary if the person's salary is greater than the average salary of all people.</li>
-- +2 marks - Write the method `query3()` that returns all fields of a pair of people where a pair of people is returned if the last_update field of their records have been updated less than an hour apart. Do not duplicate pairs.  Example: Only show (Ann, Bob) and not also (Bob, Ann).</li>
+- +1 mark - Write the method `delete()` to delete all stock price records where the date is before `2022-08-20` or the company is `GameStop`.
+- +2 marks - Write the method `query1()` that returns company info (name, revenue, employees) that have more than 10000 employees or annual revenue less that 1 million dollars. Order by company name ascending.
+- +2 marks - Write the method `query2()` that returns the company name and ticker and calculates the lowest price, highest price, average closing price, and average volume in the week of August 22nd to 26th inclusive.
+- +3 marks - Write the method `query3()` that returns a list of all companies that displays their name, ticker, and closing stock price on August 30, 2022 (if exists). Only show companies where their closing stock price on August 30, 2022 is no more than 10% below the closing average for the week of August 15th to 19th inclusive. That is, if closing price is currently 100, the average closing price must be <= 110. Companies without a stock ticker should always be shown in the list. Order by company name ascending.
 
 **Total Marks: 20**
 
-## Bonus Marks:
+## Bonus Marks: (up to 5)
 
-- +3 bonus marks for configuring multi-AZ fail-over and testing query when have failure (requires not using free-tier)
-- 
+- +3 bonus marks for configuring multi-AZ fail-over and testing query when have failure (requires not using free-tier). Must also generate a JUnit test to demonstrate.
+- +3 bonus marks for creating a read-replica (requires not using free-tier). Create a JUnit test that demonstrates inserting into primary, and after a short delay being able to read the data from the read replica using another connection.
+- Up to +3 bonus marks for demonstrating some other unique feature of MySQL on AWS
 
 ## Submission
 
-The lab can be marked immediately by the professor or TA by showing the output of the JUnit tests and by a quick code review.  Otherwise, submit the URL of your GitHub repository on Canvas. **Make sure to commit and push your updates to GitHub.**
+The lab are marked immediately by the professor by showing the output of the JUnit tests and by a quick code review.  Otherwise, submit the URL of your GitHub repository on Canvas. **Make sure to commit and push your updates to GitHub.**
 
