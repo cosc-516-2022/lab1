@@ -47,7 +47,7 @@ Click on `Edit the inbound rules`. In the next screen, `Add rule` that allows al
 
 ## Connecting to the Database
 
-Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. For more info, see [Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html).
+Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. For more info, see [Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). If you have connection issues, it is most likely related to the VPC configuration (make sure to add your IP for inbound access). AWS provides a [troubleshooting guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html#CHAP_Troubleshooting.Connecting).
 
 ### Accessing MySQL using SQuirreL SQL
 [SQuirreL](https://squirrel-sql.sourceforge.io/) is an open source graphical query tool capable of querying any JDBC-accessible database including Oracle, MySQL, and SQL Server.
