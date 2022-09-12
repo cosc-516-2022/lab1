@@ -36,7 +36,7 @@ Leave database authentication as `Password authentication`. Click `Create databa
 
 In addition to making the database public, you must also configure the database VPC to allow inbound traffic from your machine. A [virtual private cloud (VPC)](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) is a virtual network that is similar to a physical network. An administrator defines subnets, IP addresses, routing, and firewall information for their VPC. A database instance is created in a particular VPC, and the VPC must be configured to allow network access to it.
 
-Once the databsae is created, click on the database identifier to get to an overview screen. Click on the VPC security group (in the figure it is `default (sg-00bb5776c03caa8c6)`). Then select `Inbound rules`. 
+Once the database is created, click on the database identifier to get to an overview screen. Click on the VPC security group (in the figure it is `default (sg-00bb5776c03caa8c6)`). Then select `Inbound rules`. 
 
 <img src="img/4_security_group.png" alt="Configure VPC security group" width="600">
 <img src="img/4b_security_group_config.png" alt="Configure VPC security group with Inbound IP Rule" width="600">
@@ -50,7 +50,7 @@ Click on `Edit the inbound rules`. In the next screen, `Add rule` that allows al
 Connecting to the database can be done using MySQL command line or using the MySQL Workbench GUI. For more info, see [Connecting to MySQL on AWS RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). If you have connection issues, it is most likely related to the VPC configuration (make sure to add your IP for inbound access). AWS provides a [troubleshooting guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html#CHAP_Troubleshooting.Connecting).
 
 ### Accessing MySQL using SQuirreL SQL
-[SQuirreL](https://squirrel-sql.sourceforge.io/) is an open source graphical query tool capable of querying any JDBC-accessible database including Oracle, MySQL, and SQL Server.
+[SQuirreL](https://squirrel-sql.sourceforge.io/) is an open source graphical query tool capable of querying any JDBC-accessible databases including Oracle, MySQL, and SQL Server.
 
 Start up SQuirreL. Register our MySQL server with the information:
 
@@ -68,8 +68,14 @@ Database: (leave blank)
 
 To test your database, write Java code using [Visual Studio Code](https://code.visualstudio.com/). The file to edit is `MySQLonAWS.java`.  The test file is `TestMySQLonAWS.java`.  Fill in the methods requested (search for **TODO**).  Marks for each method are below.  You receive the marks if you pass the JUnit tests AND have followed the requirements asked in the question (including documentation and proper formatting).
 
-- +1 mark - Method `connect()` to make a connection to the database.
-- +1 mark - Method `connectSSL()` to make a secure connection to the database. Requires updating database configuration on RDS.
+- +1 mark - Method `connect()` to make a connection to the database. Connections are encrypted with SSL by default.
+- +1 mark - Method `connectSSL()` to make a secure connection to the database where the server certificate is validated by the client. Requires some client configuration so suggest leaving it to the end. 
+	*  The Amazon certificates can be [downloaded here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificates) (select `Canada (Central)`). 
+	*  Create a truststore with your certificate. The truststore will have a file location and a password. Use a command like this:
+	
+	  keytool -importcert -alias AWSCert -file ca-central-1-bundle.pem -keystore truststore_mysql
+	* Setup JDBC driver with correct parameters to verify certificate and location of truststore. [MySQL JDBC Configuration Reference](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html)
+	* [Additional info from Amazon](https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/) 
 - +1 mark - Method `close()` to close the connection to the database.
 - +1 mark - Method `drop()` to drop the tables `company` and `stockprice` that we will be using. Note: The database name will be `lab1`. Note: May need to perform `USE lab1` command before drop. [MySQL USE Command](https://dev.mysql.com/doc/refman/8.0/en/use.html)
 - +4 marks - Method `create()` to create the database `lab1`. [MySQL CREATE DATABASE command](https://dev.mysql.com/doc/refman/8.0/en/create-database.html). Create the following tables:
@@ -91,7 +97,7 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 	  - lowPrice - low price must hold up to 99999999.99
 	  - closePrice - closing price must hold up to 99999999.99
 	  - volume - number of shares traded, integer
-	  - primary key must be `companyId` and `priceDate`
+	  - primary key must be companyId and priceDate
 	  - add an appropriate foreign key
 ```
 - +4 marks - Method `insert()` to add records. The records are given above the `insert()` method in the code file. **You must use PreparedStatements to get full marks.**	
@@ -111,5 +117,5 @@ To test your database, write Java code using [Visual Studio Code](https://code.v
 
 ## Submission
 
-The lab are marked immediately by the professor by showing the output of the JUnit tests and by a quick code review.  Otherwise, submit the URL of your GitHub repository on Canvas. **Make sure to commit and push your updates to GitHub.**
+The lab is marked immediately by the professor by showing the output of the JUnit tests and by a quick code review.  Otherwise, submit the URL of your GitHub repository on Canvas. **Make sure to commit and push your updates to GitHub.**
 
